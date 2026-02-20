@@ -1,8 +1,13 @@
+using MvcNetCoreUtilidades.Helpers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddMemoryCache();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<HelperPahtProvider>(); // Changed from Singleton to Scoped
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
